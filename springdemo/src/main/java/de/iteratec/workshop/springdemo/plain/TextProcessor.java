@@ -23,15 +23,22 @@ public class TextProcessor {
     }
 
     private void processText(String text) {
+        Optional<Rating> finalRating = rateText(text);
+        finalRating.ifPresent(r -> sendForMediocreAndUp(r, text));
+    }
+
+    private Optional<Rating> rateText(String text) {
         List<Rating> ratings = new ArrayList<>();
         for (TextRater textRater : textRaterList) {
             textRater.rate(text).ifPresent(ratings::add);
         }
-        Optional<Rating> finalRating = finalRatingCalculator.calculate(ratings);
-        finalRating.ifPresent(r -> {
-            if (r.compareTo(Rating.MEDIOCRE) >= 0) {
-                textConsumer.sendText(text);
-            }
-        });
+
+        return finalRatingCalculator.calculate(ratings);
+    }
+
+    private void sendForMediocreAndUp(Rating rating, String text) {
+        if (rating.compareTo(Rating.MEDIOCRE) >= 0) {
+            textConsumer.sendText(text);
+        }
     }
 }
