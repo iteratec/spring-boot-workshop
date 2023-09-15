@@ -1,7 +1,5 @@
 package de.iteratec.workshop.springbootdemo.api.dto;
 
-import java.util.List;
-
 public class PersonDto {
 
     private Integer id;
@@ -9,10 +7,6 @@ public class PersonDto {
     private String firstname;
 
     private String lastname;
-
-    private List<MovieDto> moviesAsDirector;
-
-    private List<MovieDto> moviesAsMainActor;
 
     public Integer getId() {
         return id;
@@ -38,19 +32,4 @@ public class PersonDto {
         this.lastname = lastname;
     }
 
-    public List<MovieDto> getMoviesAsDirector() {
-        return moviesAsDirector;
-    }
-
-    public void setMoviesAsDirector(List<MovieDto> moviesAsDirector) {
-        this.moviesAsDirector = moviesAsDirector;
-    }
-
-    public List<MovieDto> getMoviesAsMainActor() {
-        return moviesAsMainActor;
-    }
-
-    public void setMoviesAsMainActor(List<MovieDto> moviesAsMainActor) {
-        this.moviesAsMainActor = moviesAsMainActor;
-    }
 }

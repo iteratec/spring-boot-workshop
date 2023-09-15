@@ -2,8 +2,6 @@ package de.iteratec.workshop.springbootdemo.persistence.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "person", uniqueConstraints = @UniqueConstraint(columnNames = {"firstname", "lastname"}))
 public class PersonEntity {
@@ -14,12 +12,6 @@ public class PersonEntity {
     private String firstname;
 
     private String lastname;
-
-    @OneToMany(mappedBy = "director")
-    private List<MovieEntity> moviesAsDirector;
-
-    @OneToMany(mappedBy = "mainActor")
-    private List<MovieEntity> moviesAsMainActor;
 
     public Integer getId() {
         return id;
@@ -45,19 +37,4 @@ public class PersonEntity {
         this.lastname = lastname;
     }
 
-    public List<MovieEntity> getMoviesAsDirector() {
-        return moviesAsDirector;
-    }
-
-    public void setMoviesAsDirector(List<MovieEntity> moviesAsDirector) {
-        this.moviesAsDirector = moviesAsDirector;
-    }
-
-    public List<MovieEntity> getMoviesAsMainActor() {
-        return moviesAsMainActor;
-    }
-
-    public void setMoviesAsMainActor(List<MovieEntity> moviesAsMainActor) {
-        this.moviesAsMainActor = moviesAsMainActor;
-    }
 }

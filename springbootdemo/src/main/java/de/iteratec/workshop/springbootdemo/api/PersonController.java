@@ -1,10 +1,8 @@
 package de.iteratec.workshop.springbootdemo.api;
 
 import de.iteratec.workshop.springbootdemo.api.dto.CreatePersonDto;
-import de.iteratec.workshop.springbootdemo.api.dto.MovieDto;
 import de.iteratec.workshop.springbootdemo.api.dto.PersonDto;
 import de.iteratec.workshop.springbootdemo.persistence.PersonRepository;
-import de.iteratec.workshop.springbootdemo.persistence.model.MovieEntity;
 import de.iteratec.workshop.springbootdemo.persistence.model.PersonEntity;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -30,8 +28,6 @@ public class PersonController {
         PersonEntity person = new PersonEntity();
         person.setFirstname(dto.getFirstname());
         person.setLastname(dto.getLastname());
-        person.setMoviesAsDirector(List.of());
-        person.setMoviesAsMainActor(List.of());
 
         personRepository.save(person);
 
@@ -67,20 +63,6 @@ public class PersonController {
         dto.setId(person.getId());
         dto.setFirstname(person.getFirstname());
         dto.setLastname(person.getLastname());
-        dto.setMoviesAsDirector(person.getMoviesAsDirector().stream().map(this::mapMovie).toList());
-        dto.setMoviesAsMainActor(person.getMoviesAsMainActor().stream().map(this::mapMovie).toList());
-
-        return dto;
-    }
-
-    private MovieDto mapMovie(MovieEntity movie) {
-        if (movie == null) {
-            return null;
-        }
-        MovieDto dto = new MovieDto();
-        dto.setId(movie.getId());
-        dto.setGenre(movie.getGenre());
-        dto.setYear(movie.getYear());
 
         return dto;
     }
