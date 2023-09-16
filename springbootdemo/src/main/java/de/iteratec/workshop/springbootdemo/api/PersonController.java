@@ -56,7 +56,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public PersonDto getPerson(@PathVariable("id") Integer id) {
+    public PersonDto getPerson(@PathVariable Integer id) {
         return personRepository.findById(id)
                 .map(this::mapPerson)
                 .orElseThrow(() -> createErrorResponseException(404, "No Person found for id=" + id));
