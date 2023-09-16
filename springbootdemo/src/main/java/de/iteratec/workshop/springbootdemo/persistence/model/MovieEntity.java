@@ -9,7 +9,7 @@ public class MovieEntity {
     @GeneratedValue
     private Integer id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String title;
 
     private String genre;
